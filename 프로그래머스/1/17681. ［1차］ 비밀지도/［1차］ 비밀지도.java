@@ -11,10 +11,10 @@ class Solution {
         
         
         while(answer[i].length()<n){
-            answer[i]="0"+answer[i];
+            answer[i]="0"+answer[i]; //자릿수맞추기
         }
         while(answer2[i].length()<n){
-            answer2[i]="0"+answer2[i];
+            answer2[i]="0"+answer2[i]; //자릿수맞추기
         }
         for(int j=0;j<n;j++){
             if(answer[i].charAt(j)=='1'|| answer2[i].charAt(j)=='1'){
