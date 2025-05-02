@@ -1,11 +1,11 @@
-
 import java.util.Scanner;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sr = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = sr.nextInt();
+        int n = Integer.parseInt(br.readLine());
 
         int start = 666;
         int count = 1;
