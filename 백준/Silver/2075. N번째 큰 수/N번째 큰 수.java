@@ -1,28 +1,29 @@
 
+import java.util.*;
 import java.io.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
 
-public class Main{
+public class Main {
+
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder(); //출력
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st;
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
 
 
-        int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N * N];
-        int idx = 0;
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < N; j++) {
-                arr[idx++] = Integer.parseInt(st.nextToken());
+            for (int j = 0; j < n; j++) {
+                pq.offer(Integer.parseInt(st.nextToken()));
             }
         }
-        Arrays.sort(arr);
-        System.out.println(arr[N * N - N]);
+
+        for (int i = 0; i < n - 1; i++) {
+            pq.poll();
+        }
+        System.out.println(pq.poll());
     }
 }
