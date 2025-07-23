@@ -1,31 +1,40 @@
 
-
-import java.util.*;
+import java.io.*;
+import java.util.LinkedList;
 
 public class Main {
-    public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>(); //정답을 위한 리스트
-        Scanner sr = new Scanner(System.in); //입력
-        Queue<Integer> queue = new LinkedList<>(); //큐를활용 ->LinkedList
-        int num = sr.nextInt(); //숫자 갯수
-        int k = sr.nextInt(); //뽑을 숫자 갯수
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); //입력
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));//출력
 
-        for (int i = 1; i <= num; i++) {
-            queue.offer(i);//큐에 숫자 전부 넣기
+        String[] input = reader.readLine().split(" ");//공백을 기준으로 다른 객체로 입력
+        int N = Integer.parseInt(input[0]);
+        int k = Integer.parseInt(input[1]);
+
+        LinkedList<Integer> list = new LinkedList<>();
+        for (int i = 1; i <= N; i++) {
+            list.add(i);
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("<");
 
-        while (queue.size() > 1) {
-            for (int i = 0; i < k - 1; i++) {
-                queue.offer(queue.poll());
+        StringBuilder result = new StringBuilder(); //문자열을 합쳐서 출력하기 위한 객체
+
+        result.append("<");
+
+        int index = 0; //인덱스초기화
+        while (!list.isEmpty()) { //빌때까지 반복 -> 안비어있으면 반복수행
+            index = (index + k - 1) % list.size(); //
+            //끝난다면 앞으로간다
+            //얘가 키포인트!!
+            result.append(list.remove(index));//반환해주면서 제거해줌 poll같은 것
+
+            if (!list.isEmpty()) {
+                result.append(", ");
             }
-            sb.append(queue.poll()).append(", ");
         }
-
-        sb.append(queue.poll()).append(">");
-        System.out.println(sb);
-
+        result.append(">");
+        writer.write(result.toString());
+        writer.flush();
+        writer.close();
+        reader.close();
     }
-
 }
