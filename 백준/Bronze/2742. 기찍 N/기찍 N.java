@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,15 +5,17 @@ import java.io.InputStreamReader;
 
 
 public class Main {
-    public static void main(String[] args)throws IOException {
+     public static void main(String[] args)throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         int N = Integer.parseInt(br.readLine());
         br.close();
 
+        StringBuilder sb = new StringBuilder();
         while (N > 0) {
-            System.out.println(N);
+            sb.append(N + "\n");
             N--;
         }
+        System.out.println(sb);
     }
-
-}
+    }
