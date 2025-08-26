@@ -6,21 +6,24 @@ import java.util.StringTokenizer;
 
 
 public class Main {
-    public static void main(String[] args)throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+public static void main(String[] args)throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = Integer.parseInt(br.readLine());
+    Integer.parseInt(br.readLine());
+    StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+    int Max = -1000001;
+    int min = 1000001;
 
-        int index = 0;
-        int[] arr = new int[N];
-        while (st.hasMoreTokens()) {
-            arr[index] = Integer.parseInt(st.nextToken());
-            index++;
+    while (st.hasMoreTokens()) {
+        int val = Integer.parseInt(st.nextToken());
+        if (val > Max) {
+            Max = val;
         }
-
-        Arrays.sort(arr);
-        System.out.println(arr[0] + " " + arr[N - 1]);
+        if (val < min) {
+            min = val;
+        }
     }
+    System.out.println(min + " " + Max);
+}
 }
