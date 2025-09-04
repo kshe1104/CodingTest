@@ -1,7 +1,7 @@
 import java.util.*;
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        Map<String,Integer> map = new HashMap<>();
+        Map<String,Integer> map = new HashMap<>(); //map -> 시간 복잡도를 줄임
         
         //참가자 전원 추가
         for(String p : participant){
