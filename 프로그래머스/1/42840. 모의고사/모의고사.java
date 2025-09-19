@@ -1,48 +1,26 @@
 import java.util.*;
-
 class Solution {
-    public int[] solution(int[] answers) { //정답배열을 파라미터로 받음
-        
-        int[] count = {0,0,0};
-        int[] st1 ={1,2,3,4,5};
-        int[] st2 = {2,1,2,3,2,4,2,5};
-        int[] st3 = {3,3,1,1,2,2,4,4,5,5};
+    public int[] solution(int[] answers) {
+        int[][] pattern = {{1,2,3,4,5},
+                           {2,1,2,3,2,4,2,5},
+                           {3,3,1,1,2,2,4,4,5,5}};
+        int[] scores = new int[3]; //점수 기록
         
         for(int i=0;i<answers.length;i++){
-            if(answers[i]==(st1[i%5]))
-            {
-                count[0]++;
+            for(int j=0;j<pattern.length;j++){
+                if(answers[i]==pattern[j][i%pattern[j].length]){
+                    scores[j]++;
+                }}
             }
-            if(answers[i]==(st2[i%8]))
-            {
-                count[1]++;
-            }
-            if(answers[i]==(st3[i%10]))
-            {
-                count[2]++;
-            } 
-        }
-        int max_score = count[0];
-        for(int i=0;i<3;i++)
-        {
-            if(max_score<count[i])
-            {
-                max_score = count[i];
+        int max_scores = Arrays.stream(scores).max().getAsInt(); //가장 큰 수 저장
+        
+        ArrayList<Integer> answer = new ArrayList<>();
+        for(int i=0;i<scores.length;i++){
+            if(scores[i]==max_scores){
+                answer.add(i+1);
             }
         }
-        List<Integer> temp = new ArrayList<>();
-        for(int i=0;i<count.length;i++)
-        {
-            if(max_score==count[i])
-            {
-                temp.add(i+1);
-            }
-        }
-        int[] answer = new int[temp.size()];
-        for(int i=0;i<temp.size();i++)
-        {
-            answer[i] = temp.get(i);
-        }
-        return answer;
+        return answer.stream().mapToInt(Integer::intValue).toArray();
+        
     }
 }
